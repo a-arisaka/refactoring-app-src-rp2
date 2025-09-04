@@ -1,6 +1,9 @@
 package jp.co.sss.crud.util;
 
 public class ConstantValue {
+	//インスタンス化を禁止する
+	private ConstantValue() {
+	}
 	public static final String JDBC_DRIVER = "org.postgresql.Driver";
 
 	/** DB接続用文字列 */
