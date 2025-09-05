@@ -4,11 +4,17 @@ public class MenuNoReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "メニュー番号を入力してください";
+		return "メニュー番号を半角数字で入力してください";
 	}
 
 	@Override
 	public boolean isValid(String inputString) {
+		/**
+		 * 入力文字列のバリデーションメソッド
+		 * 
+		 * @param inputString コンソール入力した文字列
+		 * @return inputStringが適正な値であるときはtrue、そうでないときはfalseを返す。
+		 */
 		// nullまたは空文字列の場合は無効
 		if (inputString == null || inputString.isEmpty()) {
 			return false;
@@ -20,7 +26,7 @@ public class MenuNoReader implements IConsoleReader {
 
 	@Override
 	public boolean isParseInt() {
-		// TODO 自動生成されたメソッド・スタブ
+
 		return false;
 	}
 
