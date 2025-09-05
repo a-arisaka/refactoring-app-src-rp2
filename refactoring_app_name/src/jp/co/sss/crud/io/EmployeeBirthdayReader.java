@@ -13,7 +13,7 @@ public class EmployeeBirthdayReader implements IConsoleReader {
 		if (inputString == null || inputString.isEmpty()) {
 			return false;
 		}
-		// 正規表現
+		// 正規表現を使い、生年月日が正規の型になっているかチェック
 		return inputString.matches("^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$");
 
 	}
