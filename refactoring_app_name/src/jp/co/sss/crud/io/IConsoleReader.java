@@ -15,6 +15,8 @@ import jp.co.sss.crud.exception.SystemErrorException;
 
 public interface IConsoleReader {
 
+	
+
 	/**
 	 * コンソールから読み取るためのメソッド
 	 * <br>呼び出し先で戻り値を適正な型（IntegerやString）にキャストすること
@@ -32,7 +34,7 @@ public interface IConsoleReader {
 			input = br.readLine();
 			if (!isValid(input)) {
 				String errorMsg = getErrorMsg();
-				throw new IllegalInputException(errorMsg);
+				throw new IllegalInputException(errorMsg,null);
 			}
 		} catch (IOException e) {
 			throw new SystemErrorException(MSG_SYSTEM_ERROR, e);

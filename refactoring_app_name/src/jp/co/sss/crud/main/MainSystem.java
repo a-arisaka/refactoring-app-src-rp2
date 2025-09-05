@@ -51,7 +51,7 @@ public class MainSystem {
 			switch (menuNo) {
 			case 1:
 				// 全件表示機能の呼出
-				_DBController.find();
+				_DBController.findAll();
 				break;
 
 			case 2:

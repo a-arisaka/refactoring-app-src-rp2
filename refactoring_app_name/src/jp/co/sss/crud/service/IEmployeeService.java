@@ -1,19 +1,14 @@
 package jp.co.sss.crud.service;
 
+import static jp.co.sss.crud.util.ConstantMsg.*;
+
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
-
 /**
  * 社員管理のためのビジネスロジックインターフェース
  */
 public interface IEmployeeService {
 
-	  public static final int MENU_SELECT_ALL       = 1;
-	    public static final int MENU_SEARCH_EMP_NAME  = 2;
-	    public static final int MENU_SEARCH_DEPT_ID   = 3;
-	    public static final int MENU_INSERT           = 4;
-	    public static final int MENU_UPDATE           = 5;
-	    public static final int MENU_DELETE           = 6;
 	/**
 	 * サービスクラスのインスタンスを生成する
 	 * @param menuNo
