@@ -1,6 +1,6 @@
 package jp.co.sss.crud.dto;
 
-import java.time.LocalDate;
+import java.util.Date;
 //社員テーブル
 public class Employee {
 	  /** 従業員ID */
@@ -10,10 +10,10 @@ public class Employee {
     private String empName;
 
     /** 性別 */
-    private String gender;
+    private int gender;
 
     /** 誕生日 */
-    private LocalDate birthday;
+    private Date birthday;
 
     /** 所属部署  */
     private Department department;
@@ -34,7 +34,7 @@ public class Employee {
      * @param birthday 誕生日
      * @param department 所属部署
      */
-    public Employee(int empId, String empName, String gender, LocalDate birthday, Department department) {
+    public Employee(int empId, String empName, int gender, Date birthday, Department department) {
         this.empId = empId;
         this.empName = empName;
         this.gender = gender;
@@ -60,19 +60,19 @@ public class Employee {
         this.empName = empName;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
