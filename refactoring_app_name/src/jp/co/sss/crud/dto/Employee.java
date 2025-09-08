@@ -1,6 +1,9 @@
 package jp.co.sss.crud.dto;
 
 import java.util.Date;
+
+import jp.co.sss.crud.util.ConstantMsg;
+
 //社員テーブル
 public class Employee {
 	  /** 従業員ID */
@@ -83,4 +86,18 @@ public class Employee {
     public void setDepartment(Department department) {
         this.department = department;
     }
+    
+  //Employee#toStringのオーバーライド
+    @Override
+     public String toString() { 
+      String gender = ""; 
+      if (this.gender == 1) { 
+       gender = ConstantMsg.GENDER_MALE; 
+      } else if (this.gender == 2) { 
+       gender = ConstantMsg.GENDER_FEMALE ; 
+      } 
+     
+      return empId + "\t" + empName + "\t" + gender + "\t" + birthday 
+        + "\t" + department.getDeptName(); 
+   } 
 }

@@ -14,13 +14,10 @@ import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeDAO implements IEmployeeDAO {
-	/** インスタンス化を禁止 */
-	private EmployeeDAO() {
 
-	}
 
 	@Override
-	public List<Employee> findAll() throws SystemErrorException {
+	public  List<Employee> findAll() throws SystemErrorException {
 		List<Employee> employeeList = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

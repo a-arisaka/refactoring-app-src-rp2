@@ -5,6 +5,7 @@ import jp.co.sss.crud.exception.SystemErrorException;
 
 public class EmployeeAllFindService implements IEmployeeService{
 
+
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
 		

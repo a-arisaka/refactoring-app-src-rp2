@@ -17,7 +17,7 @@ public class ConstantMsg {
 	public static final String MSG_UNKNOWN = "該当者はいませんでした";
 	public static final String MSG_RECORD = "社員ID\\t社員名\\t性別\\t生年月日\\t部署名";
 	public static final String GENDER_UNKNOWN = "\"回答なし\" + \"\\t\"";
-	public static final String GENDER_MALE = "男性" + "\t";
+	public static final String GENDER_MALE= "男性" + "\t";
 	public static final String GENDER_FEMALE = "女性" + "\t";
 	public static final String GENDER_OTHER = "その他" + "\t";
 	public static final String DEPT_ID_1 = "営業部";
