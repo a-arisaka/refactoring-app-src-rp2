@@ -13,6 +13,7 @@ public class EmployeeFindByEmpNameService implements IEmployeeService {
 
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
+		ConsoleWriter.message(1);
 		EmployeeNameReader nameReader = new EmployeeNameReader();
 		String searchName = (String) nameReader.input();
 		EmployeeDAO employeeDAO = new EmployeeDAO();

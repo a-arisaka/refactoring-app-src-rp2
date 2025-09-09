@@ -4,32 +4,51 @@ import jp.co.sss.crud.util.ConstantMsg;
 
 public class ConsoleWriter {
 
-  public static void printUnknown() {
-	 System.out.println(ConstantMsg.MSG_UNKNOWN);
- }
- public static void delete() {
-	 System.out.println(ConstantMsg.DELETE_COMPLETE);
- }
- public static void update() {
-	 System.out.println(ConstantMsg.UPDATE_COMPLETE);	 
- }
- public static void show() {
-	 System.out.println(ConstantMsg.MSG_RECORD);
- }
- public static void regisuter() {
-	 System.out.println(ConstantMsg.REGISTER_COMPLETE);
- }
- public static void message(int messageNo) {
-	 switch(messageNo) {
-	 case 1 :System.out.println(ConstantMsg.EMP_NAME);
-	 case 2 :System.out.println(ConstantMsg.EMP_ID);
-	 case 3 :System.out.println(ConstantMsg.GENDER);
-	 case 4 :System.out.println(ConstantMsg.BIRTHDAY);
-	 case 5 :System.out.println(ConstantMsg.DEPT_ID);
-	 case 6 :System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);	
-	 case 7 :System.out.println(ConstantMsg.MSG_DEPT_ID);
-	 case 8 :System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
-	 }
-	 
- }
+	public static void printUnknown() {
+		System.out.println(ConstantMsg.MSG_UNKNOWN);
+	}
+
+	public static void delete() {
+		System.out.println(ConstantMsg.DELETE_COMPLETE);
+	}
+
+	public static void update() {
+		System.out.println(ConstantMsg.UPDATE_COMPLETE);
+	}
+
+	public static void show() {
+		System.out.println(ConstantMsg.MSG_RECORD);
+	}
+
+	public static void regisuter() {
+		System.out.println(ConstantMsg.REGISTER_COMPLETE);
+	}
+
+	public static void message(int messageNo) {
+		switch (messageNo) {
+		case 1:
+			System.out.println(ConstantMsg.EMP_NAME);
+		case 2:
+			System.out.println(ConstantMsg.EMP_ID);
+		case 3:
+			System.out.println(ConstantMsg.GENDER);
+		case 4:
+			System.out.println(ConstantMsg.BIRTHDAY);
+		case 5:
+			System.out.println(ConstantMsg.DEPT_ID);
+		case 6:
+			System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);
+		case 7:
+			System.out.println(ConstantMsg.MSG_DEPT_ID);
+		case 8:
+			System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
+		}
+	}
+
+	public static void startMessage() {
+		System.out.println(ConstantMsg.START_MENU);
+	}
+	public static void end() {
+		System.out.println(ConstantMsg.SYSTEM_END);
+	}
 }

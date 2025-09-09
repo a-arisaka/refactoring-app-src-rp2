@@ -12,6 +12,7 @@ public class EmployeeDeleteService implements IEmployeeService{
 	
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
+		ConsoleWriter.message(8);
 		EmployeeEmpIdReader empIdReader = new EmployeeEmpIdReader();
 		int empId = (int) empIdReader.input();
 		EmployeeDAO employeeDAO = new EmployeeDAO();

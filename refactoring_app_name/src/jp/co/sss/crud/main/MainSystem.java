@@ -1,13 +1,13 @@
 package jp.co.sss.crud.main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
 
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.io.ConsoleWriter;
+import jp.co.sss.crud.io.MenuNoReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -39,30 +39,22 @@ public class MainSystem {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException,
 			SystemErrorException, IllegalInputException {
 
-		BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
 		EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
 		EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
 		EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
 		EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
 		EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
 		EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
+		MenuNoReader menuNoReader = new MenuNoReader();
+
 		int menuNo = 0;
 
 		do {
 			// メニューの表示
-			System.out.println("=== 社員管理システム ===");
-			System.out.println("1.全件表示");
-			System.out.println("2.社員名検索");
-			System.out.println("3.部署ID検索");
-			System.out.println("4.新規登録");
-			System.out.println("5.更新");
-			System.out.println("6.削除");
-			System.out.println("7.終了");
-			System.out.print("メニュー番号を入力してください：");
+			ConsoleWriter.startMessage();
 
 			// メニュー番号の入力
-			String menuNoStr = userInput.readLine();
-			menuNo = Integer.parseInt(menuNoStr);
+			menuNo = (int) menuNoReader.input();
 
 			// 機能の呼出
 			switch (menuNo) {
@@ -73,17 +65,13 @@ public class MainSystem {
 				break;
 
 			case 2:
-				// 社員名検索
-				System.out.print("社員名:");
-				
 				// 社員名検索機能の呼出
 				employeeFindByEmpNameService.execute();
 				break;
 
 			case 3:
-				// 検索する部署IDを入力
-				System.out.print("部署ID(1:営業部、2:経理部、3:総務部)を入力してください:");
-				// 検索機能の呼出
+
+				// 部署ID検索機能の呼出
 				employeeFindByDeptIdService.execute();
 				break;
 
@@ -100,15 +88,12 @@ public class MainSystem {
 				break;
 
 			case 6:
-				// 削除する社員IDを入力
-				System.out.print("削除する社員の社員IDを入力してください：");
-
 				// 削除機能の呼出
 				employeeUpdateService.execute();
 				break;
 
 			}
 		} while (menuNo != 7);
-		System.out.println("システムを終了します。");
+		ConsoleWriter.end();
 	}
 }

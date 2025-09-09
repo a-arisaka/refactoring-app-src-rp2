@@ -36,5 +36,16 @@ public class ConstantMsg {
 	public static final String REGISTER_COMPLETE = "社員情報を登録しました";
 	public static final String UPDATE_COMPLETE = "社員情報を更新しました";
 	public static final String DELETE_COMPLETE = "社員情報を削除しました";
+	public static final String START_MENU = "		\"=== 社員管理システム ===\"\n"
+										+ "			\"1.全件表示\"\n"
+										+ "			\"2.社員名検索\"\n"
+										+ "			\"3.部署ID検索\"\n"
+										+ "			\"4.新規登録\"\n"
+										+ "			\"5.更新\"\n"
+										+ "			\"6.削除\"\n"
+										+ "			\"7.終了\"\n"
+										+ "			\"メニュー番号を入力してください：\"	";
+	public static final String SYSTEM_END = "システムを終了します";
+	
 
 }
