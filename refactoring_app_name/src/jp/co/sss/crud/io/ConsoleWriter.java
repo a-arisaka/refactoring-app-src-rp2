@@ -28,20 +28,28 @@ public class ConsoleWriter {
 		switch (messageNo) {
 		case 1:
 			System.out.println(ConstantMsg.EMP_NAME);
+			break;
 		case 2:
 			System.out.println(ConstantMsg.EMP_ID);
+			break;
 		case 3:
 			System.out.println(ConstantMsg.GENDER);
+			break;
 		case 4:
 			System.out.println(ConstantMsg.BIRTHDAY);
+			break;
 		case 5:
 			System.out.println(ConstantMsg.DEPT_ID);
+			break;
 		case 6:
 			System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);
+			break;
 		case 7:
 			System.out.println(ConstantMsg.MSG_DEPT_ID);
+			break;
 		case 8:
 			System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
+			break;
 		}
 	}
 
