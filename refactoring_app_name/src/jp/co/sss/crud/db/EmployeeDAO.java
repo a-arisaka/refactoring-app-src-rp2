@@ -138,6 +138,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		return employeeList;
 	}
 
+
 	@Override
 	public void insert(Employee employee) throws SystemErrorException {
 		Connection connection = null;
@@ -218,6 +219,48 @@ public class EmployeeDAO implements IEmployeeDAO {
 		}
 		
 		return 1;
+	}
+
+	@Override
+	public List<Employee> findByEmpId(int empId) throws SystemErrorException {
+		List<Employee> employeeList = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			//DBに接続
+			connection = DBManager.getConnection();
+			// SQL文を準備
+			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
+			sql.append(ConstantSQL.SQL_SELECT_BY_EMP_ID);
+
+			// ステートメントの作成
+			preparedStatement = connection.prepareStatement(sql.toString());
+
+			// 検索条件となる値をバインド
+			preparedStatement.setLong(1,  ((Employee) employeeList).getEmpId());
+
+			// SQL文を実行
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				int empSearchId = resultSet.getInt("emp_id");
+				String empName = resultSet.getString("emp_name");
+				int gender = resultSet.getInt("gender");
+				Date birthday = resultSet.getDate("birthday");
+				Department deptName = (Department) resultSet.getObject("depe_name");
+
+				Employee employee = new Employee(empSearchId, empName, gender, birthday, deptName);
+				employeeList.add(employee);
+			}
+
+		} catch (SQLException | ClassNotFoundException e) {
+			// チェック例外であるSystemErrorExceptionをスロー
+			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		}
+	return employeeList;
+	
 	}
 
 }
