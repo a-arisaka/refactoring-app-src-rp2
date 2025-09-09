@@ -43,5 +43,7 @@ public class ConsoleWriter {
  public static void show() {
 	 System.out.println(ConstantMsg.MSG_RECORD);
  }
- 
+ public static void regisuter() {
+	 System.out.println(ConstantMsg.REGISTER_COMPLETE);
+ }
 }
