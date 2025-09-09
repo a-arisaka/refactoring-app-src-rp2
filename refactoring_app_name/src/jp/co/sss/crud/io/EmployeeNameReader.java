@@ -4,7 +4,7 @@ public class EmployeeNameReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "名前を入力してください";
+		return "エラー：社員名を入力してください";
 	}
 
 	@Override

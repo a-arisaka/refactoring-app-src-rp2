@@ -27,7 +27,7 @@ public class MenuNoReader implements IConsoleReader {
 	@Override
 	public boolean isParseInt() {
 
-		return false;
+		return true;
 	}
 
 }
