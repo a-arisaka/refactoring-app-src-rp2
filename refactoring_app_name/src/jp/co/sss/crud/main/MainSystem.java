@@ -5,8 +5,22 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
 
-import jp.co.sss.crud.db._DBController;
+import jp.co.sss.crud.dto.Department;
+import jp.co.sss.crud.dto.Employee;
+import jp.co.sss.crud.exception.IllegalInputException;
+import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.io.EmployeeBirthdayReader;
+import jp.co.sss.crud.io.EmployeeDeptIdReader;
+import jp.co.sss.crud.io.EmployeeGenderReader;
+import jp.co.sss.crud.io.EmployeeNameReader;
+import jp.co.sss.crud.service.EmployeeAllFindService;
+import jp.co.sss.crud.service.EmployeeDeleteService;
+import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
+import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
+import jp.co.sss.crud.service.EmployeeRegisterService;
+import jp.co.sss.crud.service.EmployeeUpdateService;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -25,9 +39,22 @@ public class MainSystem {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 * @throws ParseException 
+	 * @throws IllegalInputException 
+	 * @throws SystemErrorException 
 	 */
-	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException {
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException,
+			SystemErrorException, IllegalInputException {
+
 		BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+		EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
+		EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
+		EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
+		EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
+		EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
+		EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
+		Employee newEmployee = new Employee();
+		Department department = new Department();
 
 		int menuNo = 0;
 
@@ -50,53 +77,56 @@ public class MainSystem {
 			// 機能の呼出
 			switch (menuNo) {
 			case 1:
-				// 全件表示機能の呼出
-				_DBController.findAll();
+				//全件検索機能の呼出
+				employeeAllFindService.execute();
+
 				break;
 
 			case 2:
 				// 社員名検索
 				System.out.print("社員名:");
-
-				// 検索機能の呼出
-				_DBController.findB();
+				
+				// 社員名検索機能の呼出
+				employeeFindByEmpNameService.execute();
 				break;
 
 			case 3:
 				// 検索する部署IDを入力
 				System.out.print("部署ID(1:営業部、2:経理部、3:総務部)を入力してください:");
-				String deptIdA = userInput.readLine();
-
 				// 検索機能の呼出
-				_DBController.findC(deptIdA);
+				employeeFindByDeptIdService.execute();
 				break;
 
 			case 4:
 				// 登録する値を入力
+				EmployeeNameReader insertNameReader = new EmployeeNameReader();
 				System.out.print("社員名:");
-				String empName = userInput.readLine();
+				String empName = (String) insertNameReader.input();
+				newEmployee.setEmpName(empName);
+
 				System.out.print("性別(0:その他, 1:男性, 2:女性, 9:回答なし):");
-				String gender = userInput.readLine();
+				EmployeeGenderReader genderReader = new EmployeeGenderReader();
+				int gender = (int) genderReader.input();
+				newEmployee.setGender(gender);
+
 				System.out.print("生年月日(西暦年/月/日):");
-				String birthday = userInput.readLine();
+				EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
+				Date birthday = (Date) birthdayReader.input();
+				newEmployee.setBirthday(birthday);
+
 				System.out.print("部署ID(1:営業部、2:経理部、3:総務部):");
-				String deptIdB = userInput.readLine();
+				EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
+				Integer deptId = (Integer) deptIdReader.input();
+				department.setDeptId(deptId);
 
 				// 登録機能の呼出
-				_DBController.insert(empName, gender, birthday, deptIdB);
+				employeeRegisterService.execute();
 				break;
 
 			case 5:
-				// 更新する社員IDを入力
-				System.out.print("更新する社員の社員IDを入力してください：");
-
-				// 更新する値を入力する
-				String empId_1 = userInput.readLine();
-				Integer.parseInt(empId_1);
 
 				// 更新機能の呼出
-				_DBController.update(empId_1);
-				System.out.println("社員情報を更新しました");
+				employeeDeleteService.execute();
 
 				break;
 
@@ -105,7 +135,7 @@ public class MainSystem {
 				System.out.print("削除する社員の社員IDを入力してください：");
 
 				// 削除機能の呼出
-				_DBController.delete();
+				employeeUpdateService.execute();
 				break;
 
 			}

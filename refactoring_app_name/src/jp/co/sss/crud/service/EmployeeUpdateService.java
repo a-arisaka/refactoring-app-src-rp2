@@ -5,15 +5,58 @@ import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
+import jp.co.sss.crud.io.EmployeeBirthdayReader;
+import jp.co.sss.crud.io.EmployeeDeptIdReader;
+import jp.co.sss.crud.io.EmployeeEmpIdReader;
+import jp.co.sss.crud.io.EmployeeGenderReader;
+import jp.co.sss.crud.io.EmployeeNameReader;
 
 public class EmployeeUpdateService implements IEmployeeService {
 	Employee emp = new Employee();
 
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
+		//更新する社員IDを入力
+		ConsoleWriter.message(6);
+		EmployeeEmpIdReader empIdReader = new EmployeeEmpIdReader();
+		int updateEmpId = (int) empIdReader.input();
+
+		//社員IDで検索
 		EmployeeDAO employeeDAO = new EmployeeDAO();
-		Integer employees = employeeDAO.update(emp);
-		if (employees == 1) {
+		Employee employeeToUpdate = (Employee) employeeDAO.findByEmpId(updateEmpId);
+		if (employeeToUpdate == null) {
+			ConsoleWriter.printUnknown();
+			return;
+		}
+		//新しい社員名の入力
+		ConsoleWriter.message(1);
+		EmployeeNameReader nameReader = new EmployeeNameReader();
+		String newName = (String) nameReader.input();
+
+		//新しい性別の入力
+		ConsoleWriter.message(3);
+		EmployeeGenderReader genderReader = new EmployeeGenderReader();
+		Integer newGender = (Integer) genderReader.input();
+
+		//新しい生年月日の入力
+		ConsoleWriter.message(4);
+		EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
+		java.util.Date newBirthday = (java.util.Date) birthdayReader.input();
+
+		//新しい部署IDの入力
+		ConsoleWriter.message(5);
+		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
+		Integer newDeptId = (Integer) deptIdReader.input();
+		
+		//新しい値をDTOに渡す
+		employeeToUpdate.setEmpName(newName);
+		employeeToUpdate.setGender(newGender);
+		employeeToUpdate.setBirthday(newBirthday);
+		employeeToUpdate.getDepartment().setDeptId(newDeptId);
+
+		Integer result = employeeDAO.update(employeeToUpdate);
+
+		if (result == 1) {
 			ConsoleWriter.update();
 		}
 	}
