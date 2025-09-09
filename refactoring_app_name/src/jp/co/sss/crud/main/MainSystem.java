@@ -5,16 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Date;
 
-import jp.co.sss.crud.dto.Department;
-import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
-import jp.co.sss.crud.io.EmployeeBirthdayReader;
-import jp.co.sss.crud.io.EmployeeDeptIdReader;
-import jp.co.sss.crud.io.EmployeeGenderReader;
-import jp.co.sss.crud.io.EmployeeNameReader;
 import jp.co.sss.crud.service.EmployeeAllFindService;
 import jp.co.sss.crud.service.EmployeeDeleteService;
 import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
@@ -53,9 +46,6 @@ public class MainSystem {
 		EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
 		EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
 		EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
-		Employee newEmployee = new Employee();
-		Department department = new Department();
-
 		int menuNo = 0;
 
 		do {
@@ -98,28 +88,7 @@ public class MainSystem {
 				break;
 
 			case 4:
-				// 登録する値を入力
-				EmployeeNameReader insertNameReader = new EmployeeNameReader();
-				System.out.print("社員名:");
-				String empName = (String) insertNameReader.input();
-				newEmployee.setEmpName(empName);
 
-				System.out.print("性別(0:その他, 1:男性, 2:女性, 9:回答なし):");
-				EmployeeGenderReader genderReader = new EmployeeGenderReader();
-				int gender = (int) genderReader.input();
-				newEmployee.setGender(gender);
-
-				System.out.print("生年月日(西暦年/月/日):");
-				EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
-				Date birthday = (Date) birthdayReader.input();
-				newEmployee.setBirthday(birthday);
-
-				System.out.print("部署ID(1:営業部、2:経理部、3:総務部):");
-				EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
-				Integer deptId = (Integer) deptIdReader.input();
-				department.setDeptId(deptId);
-
-				// 登録機能の呼出
 				employeeRegisterService.execute();
 				break;
 
