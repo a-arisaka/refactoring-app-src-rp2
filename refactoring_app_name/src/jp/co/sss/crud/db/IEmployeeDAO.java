@@ -31,15 +31,14 @@ public interface IEmployeeDAO {
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
 	 */
 	List<Employee> findByDeptId(int deptId) throws SystemErrorException;
-	
+
 	/**
 	 *社員ID検索
-	 * 
 	 * @param empId 社員ID
 	 * @return {@code List<Employee>} 検索社員IDを含むエンティティリスト
 	 * @throws SystemErrorException : {@code ClassNotFoundException | SQLException }をキャッチしてスローする
 	 */
-	List<Employee> findByEmpId(int empId) throws SystemErrorException;
+	Employee findByEmpId(int empId) throws SystemErrorException;
 
 	/**
 	 * 登録

@@ -59,7 +59,10 @@ public class ConstantSQL {
 	/** 条件検索(社員IDによる検索) 
 	 *  追記したもの
 	 * */
-	public static final String SQL_SELECT_BY_EMP_ID = "WHERE e.emp_id=? ";
+	public static final String SQL_SELECT_BY_EMP_ID ="SELECT e.*, d.dept_name\r\n"
+			+ "FROM employee e\r\n"
+			+ "JOIN department d ON e.dept_id = d.dept_id\r\n"
+			+ "WHERE e.emp_id = ?";
 
 	/** 条件検索(部署IDによる条件) */
 	public static final String SQL_SELECT_BY_DEPT_ID = "WHERE e.dept_id = ? ORDER BY e.emp_id";

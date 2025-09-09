@@ -38,7 +38,7 @@ public class MainSystem {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException,
 			SystemErrorException, IllegalInputException {
-
+		//サービスクラスの呼び出し
 		EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
 		EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
 		EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
@@ -61,7 +61,6 @@ public class MainSystem {
 			case 1:
 				//全件検索機能の呼出
 				employeeAllFindService.execute();
-
 				break;
 
 			case 2:
@@ -70,26 +69,22 @@ public class MainSystem {
 				break;
 
 			case 3:
-
 				// 部署ID検索機能の呼出
 				employeeFindByDeptIdService.execute();
 				break;
 
 			case 4:
-
 				employeeRegisterService.execute();
 				break;
 
 			case 5:
-
 				// 更新機能の呼出
-				employeeDeleteService.execute();
-
+				employeeUpdateService.execute();
 				break;
 
 			case 6:
 				// 削除機能の呼出
-				employeeUpdateService.execute();
+				employeeDeleteService.execute();
 				break;
 
 			}

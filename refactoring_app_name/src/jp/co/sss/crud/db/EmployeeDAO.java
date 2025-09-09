@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +24,8 @@ public class EmployeeDAO implements IEmployeeDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
 		try {
 			//DBに接続
 			connection = DBManager.getConnection();
@@ -34,16 +38,39 @@ public class EmployeeDAO implements IEmployeeDAO {
 				int empId = resultSet.getInt("emp_id");
 				String empName = resultSet.getString("emp_name");
 				int gender = resultSet.getInt("gender");
-				Date birthday = resultSet.getDate("birthday");
-				Department deptName = (Department) resultSet.getObject("depe_name");
+				// 1. まずは文字列として日付を取得
+				String birthdayStr = resultSet.getString("birthday");
 
-				Employee employee = new Employee(empId, empName, gender, birthday, deptName);
+				// 2. 定義したフォーマットで文字列をDateオブジェクトに変換
+				Date birthday = null;
+				if (birthdayStr != null && !birthdayStr.isEmpty()) {
+					try {
+						birthday = sdf.parse(birthdayStr);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+
+				Department department = new Department();
+				department.setDeptName(resultSet.getString("dept_name"));
+
+				Employee employee = new Employee(empId, empName, gender, birthday, department);
 				employeeList.add(employee);
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return employeeList;
 	}
@@ -62,6 +89,8 @@ public class EmployeeDAO implements IEmployeeDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
 		try {
 			//DBに接続
 			connection = DBManager.getConnection();
@@ -73,8 +102,8 @@ public class EmployeeDAO implements IEmployeeDAO {
 			preparedStatement = connection.prepareStatement(sql.toString());
 
 			// 検索条件となる値をバインド
-			preparedStatement.setString(1, "%" + ((Employee) employeeList).getEmpName() + "%");
-
+			//preparedStatement.setString(1, "%" + ((Employee) employeeList).getEmpName() + "%");★互換性のない型に変換しようとしたためエラー
+			preparedStatement.setString(1, "%" + searchName + "%");
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
@@ -82,16 +111,38 @@ public class EmployeeDAO implements IEmployeeDAO {
 				int empId = resultSet.getInt("emp_id");
 				String empName = resultSet.getString("emp_name");
 				int gender = resultSet.getInt("gender");
-				Date birthday = resultSet.getDate("birthday");
-				Department deptName = (Department) resultSet.getObject("depe_name");
+				// 1. まずは文字列として日付を取得
+				String birthdayStr = resultSet.getString("birthday");
 
-				Employee employee = new Employee(empId, empName, gender, birthday, deptName);
+				// 2. 定義したフォーマットで文字列をDateオブジェクトに変換
+				Date birthday = null;
+				if (birthdayStr != null && !birthdayStr.isEmpty()) {
+					try {
+						birthday = sdf.parse(birthdayStr);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+				Department department = new Department();
+				department.setDeptName(resultSet.getString("dept_name"));
+
+				Employee employee = new Employee(empId, empName, gender, birthday, department);
 				employeeList.add(employee);
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return employeeList;
 	}
@@ -102,6 +153,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		try {
 			// DBに接続
 			connection = DBManager.getConnection();
@@ -123,16 +175,38 @@ public class EmployeeDAO implements IEmployeeDAO {
 				int empId = resultSet.getInt("emp_id");
 				String empName = resultSet.getString("emp_name");
 				int gender = resultSet.getInt("gender");
-				Date birthday = resultSet.getDate("birthday");
-				Department deptName = (Department) resultSet.getObject("depe_name");
+				// 1. まずは文字列として日付を取得
+				String birthdayStr = resultSet.getString("birthday");
 
-				Employee employee = new Employee(empId, empName, gender, birthday, deptName);
+				// 2. 定義したフォーマットで文字列をDateオブジェクトに変換
+				Date birthday = null;
+				if (birthdayStr != null && !birthdayStr.isEmpty()) {
+					try {
+						birthday = sdf.parse(birthdayStr);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+				}
+				Department department = new Department();
+				department.setDeptName(resultSet.getString("dept_name"));
+
+				Employee employee = new Employee(empId, empName, gender, birthday, department);
 				employeeList.add(employee);
 			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return employeeList;
 	}
@@ -150,9 +224,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 			preparedStatement.setString(1, employee.getEmpName());
 			preparedStatement.setInt(2, employee.getGender());
-			java.util.Date utilBirthday = employee.getBirthday();
-			java.sql.Date sqlBirthday = new java.sql.Date(utilBirthday.getTime());
-			preparedStatement.setDate(3, sqlBirthday);
+			java.util.Date birthday = employee.getBirthday();
+			if (birthday != null) {
+				// 誕生日がセットされている場合、Timestampとして設定
+				preparedStatement.setTimestamp(3, new java.sql.Timestamp(birthday.getTime()));
+			} else {
+				// 誕生日がnullの場合、DBにもNULLを設定
+				preparedStatement.setNull(3, java.sql.Types.TIMESTAMP);
+			}
 
 			// Departmentオブジェクトから部署IDを取得してセット
 			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
@@ -162,6 +241,16 @@ public class EmployeeDAO implements IEmployeeDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -181,9 +270,14 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 			preparedStatement.setString(1, employee.getEmpName());
 			preparedStatement.setInt(2, employee.getGender());
-			java.util.Date utilBirthday = employee.getBirthday();
-			java.sql.Date sqlBirthday = new java.sql.Date(utilBirthday.getTime());
-			preparedStatement.setDate(3, sqlBirthday);
+			java.util.Date birthday = employee.getBirthday();
+			if (birthday != null) {
+				// 誕生日がセットされている場合、Timestampとして設定
+				preparedStatement.setTimestamp(3, new java.sql.Timestamp(birthday.getTime()));
+			} else {
+				// 誕生日がnullの場合、DBにもNULLを設定
+				preparedStatement.setNull(3, java.sql.Types.TIMESTAMP);
+			}
 			// Departmentオブジェクトから部署IDを取得してセット
 			preparedStatement.setInt(4, employee.getDepartment().getDeptId());
 
@@ -197,6 +291,16 @@ public class EmployeeDAO implements IEmployeeDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return result;
 
@@ -220,6 +324,16 @@ public class EmployeeDAO implements IEmployeeDAO {
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (preparedStatement != null)
+					preparedStatement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return 1;
@@ -234,43 +348,67 @@ public class EmployeeDAO implements IEmployeeDAO {
 	 */
 
 	@Override
-	public List<Employee> findByEmpId(int empId) throws SystemErrorException {
-		List<Employee> employeeList = new ArrayList<>();
+	public Employee findByEmpId(int empId) throws SystemErrorException {
+		Employee employee = null; // 返却用オブジェクト
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
+		String sql = ConstantSQL.SQL_SELECT_BY_EMP_ID;
 
 		try {
 			//DBに接続
 			connection = DBManager.getConnection();
-			// SQL文を準備
-			StringBuffer sql = new StringBuffer(ConstantSQL.SQL_SELECT_BASIC);
-			sql.append(ConstantSQL.SQL_SELECT_BY_EMP_ID);
 
 			// ステートメントの作成
-			preparedStatement = connection.prepareStatement(ConstantSQL.SQL_SELECT_BY_EMP_ID);
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, empId);
-			resultSet = preparedStatement.executeQuery();
-
 			// SQL文を実行
 			resultSet = preparedStatement.executeQuery();
 
-			while (resultSet.next()) {
+			if (resultSet.next()) {
 				int empSearchId = resultSet.getInt("emp_id");
 				String empName = resultSet.getString("emp_name");
 				int gender = resultSet.getInt("gender");
-				Date birthday = resultSet.getDate("birthday");
-				Department deptName = (Department) resultSet.getObject("depe_name");
+				String birthdayStr = resultSet.getString("birthday");
 
-				Employee employee = new Employee(empSearchId, empName, gender, birthday, deptName);
-				employeeList.add(employee);
+				Date birthday = null;
+				if (birthdayStr != null && !birthdayStr.isEmpty()) {
+					try {
+						birthday = sdf.parse(birthdayStr);
+					} catch (ParseException e) {
+						// エラーを無視せず、システム例外として通知する
+						throw new SystemErrorException("日付フォーマットが不正です: " + birthdayStr, e);
+					}
+				}
+				Department department = new Department();
+				department.setDeptName(resultSet.getString("dept_name"));
+
+				// 見つかった従業員をセット
+				employee = new Employee(empSearchId, empName, gender, birthday, department);
 			}
 
-		} catch (SQLException | ClassNotFoundException e) {
-			// チェック例外であるSystemErrorExceptionをスロー
+		} catch (SQLException |
+
+				ClassNotFoundException e) {
 			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} finally {
+			// リソースの解放処理
+			try {
+				if (resultSet != null) {// resultSetをクローズ
+					resultSet.close();
+				}
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-		return employeeList;
+		return employee;
 
 	}
 
