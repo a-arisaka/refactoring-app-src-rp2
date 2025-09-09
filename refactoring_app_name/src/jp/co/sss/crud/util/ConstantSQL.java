@@ -56,6 +56,11 @@ public class ConstantSQL {
 	/** 条件検索(社員名による条件) */
 	public static final String SQL_SELECT_BY_EMP_NAME = "WHERE e.emp_name LIKE ? ORDER BY e.emp_id";
 
+	/** 条件検索(社員IDによる検索) 
+	 *  追記したもの
+	 * */
+	public static final String SQL_SELECT_BY_EMP_ID = "WHERE e.emp_id=? ";
+
 	/** 条件検索(部署IDによる条件) */
 	public static final String SQL_SELECT_BY_DEPT_ID = "WHERE e.dept_id = ? ORDER BY e.emp_id";
 
@@ -68,13 +73,5 @@ public class ConstantSQL {
 
 	/** 削除 */
 	public static final String SQL_DELETE = "DELETE FROM employee WHERE emp_id = ?";
-
-	/** 条件検索(社員IDによる検索) 
-	 *  追記したもの
-	 * */
-	public static final String SQL_SELECT_BY_EMP_ID= "WHERE e.emp_id=? ";
-	
-	
-
 
 }
