@@ -16,7 +16,7 @@ public class ConstantMsg {
 	public static final String EMP_NAME = "社員名";
 	public static final String EMP_ID = "社員ID";
 	public static final String GENDER = "性別(0:その他, 1:男性, 2:女性, 9:回答なし):";
-	public static final String BIRTHDAT = "生年月日(西暦年/月/日):";
+	public static final String BIRTHDAY = "生年月日(西暦年/月/日):";
 	public static final String DEPT_ID = "部署ID(1:営業部、2:経理部、3:総務部):";
 
 	public static final String MSG_UPDATE_EMP_ID = "更新する社員の社員IDを入力してください：";

@@ -3,35 +3,8 @@ package jp.co.sss.crud.io;
 import jp.co.sss.crud.util.ConstantMsg;
 
 public class ConsoleWriter {
-	/*	・printメソッドをラッピングし、コンソールにメッセージを出力する。メッセージはConstantsクラスにまとめる 
-		・DTOのコンソール出力はtoStringメソッドを活用する。 
-	*/
-	 /**
-     * メッセージとDTOオブジェクトを組み合わせてコンソールに出力
-     * @param ConstantMsgから渡された定数を表示
-     * @param dto 表示するDTOオブジェクト
-     */
- public static void print(String message, Object dto) {
-	 System.out.println(message + dto);
- }
- /**
-  * DTOオブジェクト単体をコンソールに出力
-  * @param dto 表示するDTOオブジェクト（toString()メソッドが呼ばれる）
-  */
- public static void print(Object dto) {
- 
-     System.out.println(dto);
- }
- 
- /**
-  * メッセージ単体でコンソールに出力
-  * @param ConstantMsgから渡された定数
-  */
- public static void print(String message) {
-	 System.out.println(message);
- }
- 
- public static void printUnknown() {
+
+  public static void printUnknown() {
 	 System.out.println(ConstantMsg.MSG_UNKNOWN);
  }
  public static void delete() {
@@ -45,5 +18,18 @@ public class ConsoleWriter {
  }
  public static void regisuter() {
 	 System.out.println(ConstantMsg.REGISTER_COMPLETE);
+ }
+ public static void message(int messageNo) {
+	 switch(messageNo) {
+	 case 1 :System.out.println(ConstantMsg.EMP_NAME);
+	 case 2 :System.out.println(ConstantMsg.EMP_ID);
+	 case 3 :System.out.println(ConstantMsg.GENDER);
+	 case 4 :System.out.println(ConstantMsg.BIRTHDAY);
+	 case 5 :System.out.println(ConstantMsg.DEPT_ID);
+	 case 6 :System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);	
+	 case 7 :System.out.println(ConstantMsg.MSG_DEPT_ID);
+	 case 8 :System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
+	 }
+	 
  }
 }
