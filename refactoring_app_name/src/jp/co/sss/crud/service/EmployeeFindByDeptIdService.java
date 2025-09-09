@@ -7,7 +7,7 @@ import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
-
+//部署IDで探す
 public class EmployeeFindByDeptIdService implements IEmployeeService {
 	Employee emp = new Employee();
 

@@ -37,6 +37,9 @@ public class ConsoleWriter {
  public static void delete() {
 	 System.out.println(ConstantMsg.DELETE_COMPLETE);
  }
+ public static void update() {
+	 System.out.println(ConstantMsg.UPDATE_COMPLETE);	 
+ }
  public static void show() {
 	 System.out.println(ConstantMsg.MSG_RECORD);
  }

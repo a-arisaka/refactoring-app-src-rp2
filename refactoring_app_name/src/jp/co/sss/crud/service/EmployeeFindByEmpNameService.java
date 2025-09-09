@@ -7,8 +7,7 @@ public class EmployeeFindByEmpNameService implements IEmployeeService{
 
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
-		// TODO 自動生成されたメソッド・スタブ
-		
+				
 	}
 
 }
