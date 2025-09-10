@@ -1,5 +1,7 @@
 package jp.co.sss.crud.main;
 
+import static jp.co.sss.crud.util.ConstantMenuNo.*;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -8,12 +10,8 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
-import jp.co.sss.crud.service.EmployeeAllFindService;
-import jp.co.sss.crud.service.EmployeeDeleteService;
-import jp.co.sss.crud.service.EmployeeFindByDeptIdService;
-import jp.co.sss.crud.service.EmployeeFindByEmpNameService;
-import jp.co.sss.crud.service.EmployeeRegisterService;
-import jp.co.sss.crud.service.EmployeeUpdateService;
+import jp.co.sss.crud.service.IEmployeeService; 
+
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -39,12 +37,6 @@ public class MainSystem {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException, ParseException,
 			SystemErrorException, IllegalInputException {
 		//サービスクラスの呼び出し
-		EmployeeAllFindService employeeAllFindService = new EmployeeAllFindService();
-		EmployeeFindByEmpNameService employeeFindByEmpNameService = new EmployeeFindByEmpNameService();
-		EmployeeFindByDeptIdService employeeFindByDeptIdService = new EmployeeFindByDeptIdService();
-		EmployeeDeleteService employeeDeleteService = new EmployeeDeleteService();
-		EmployeeRegisterService employeeRegisterService = new EmployeeRegisterService();
-		EmployeeUpdateService employeeUpdateService = new EmployeeUpdateService();
 		MenuNoReader menuNoReader = new MenuNoReader();
 
 		int menuNo = 0;
@@ -58,37 +50,14 @@ public class MainSystem {
 
 			// 機能の呼出
 			try {
-				switch (menuNo) {
-				case 1:
-					//全件検索機能の呼出
-					employeeAllFindService.execute();
-					break;
-
-				case 2:
-					// 社員名検索機能の呼出
-					employeeFindByEmpNameService.execute();
-					break;
-
-				case 3:
-					// 部署ID検索機能の呼出
-					employeeFindByDeptIdService.execute();
-					break;
-
-				case 4:
-					employeeRegisterService.execute();
-					break;
-
-				case 5:
-					// 更新機能の呼出
-					employeeUpdateService.execute();
-					break;
-
-				case 6:
-					// 削除機能の呼出
-					employeeDeleteService.execute();
-					break;
-
+				// 実行可能なメニュー番号（1～6）が入力された場合
+				if (menuNo >= MENU_SELECT_ALL && menuNo <= MENU_DELETE) {
+					// ファクトリメソッドで適切なサービスのインスタンスを取得
+					IEmployeeService service = IEmployeeService.getInstanceByMenuNo(menuNo);
+					// サービスの実行
+					service.execute();
 				}
+
 			} catch (IllegalInputException e) {//不正な入力があった場合、ループに戻る 
 				System.out.println(e.getMessage());
 				System.out.println();
@@ -98,7 +67,7 @@ public class MainSystem {
 				e.printStackTrace();
 				break;
 			}
-		} while (menuNo != 7);
+		} while (menuNo != MENU_EXIT);
 		ConsoleWriter.end();
 	}
 }

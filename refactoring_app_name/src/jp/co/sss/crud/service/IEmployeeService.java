@@ -1,9 +1,10 @@
 package jp.co.sss.crud.service;
 
-import static jp.co.sss.crud.util.ConstantMsg.*;
+import static jp.co.sss.crud.util.ConstantMenuNo.*;
 
 import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
+
 /**
  * 社員管理のためのビジネスロジックインターフェース
  */
