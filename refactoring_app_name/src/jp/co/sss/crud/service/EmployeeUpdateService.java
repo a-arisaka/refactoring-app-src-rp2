@@ -42,12 +42,6 @@ public class EmployeeUpdateService implements IEmployeeService {
 		ConsoleWriter.message(4);
 		EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
 		String birthday = (String) birthdayReader.input();
-		
-
-		//新しい部署IDの入力
-		ConsoleWriter.message(5);
-		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
-		Integer newDeptId = (Integer) deptIdReader.input();
 		java.text.SimpleDateFormat sdFormat = new java.text.SimpleDateFormat("yyyy/MM/dd");
 		java.util.Date newBirthday = null;
 		try {
@@ -58,6 +52,13 @@ public class EmployeeUpdateService implements IEmployeeService {
 			ConsoleWriter.birthdayError();
 		    return; 
 		}
+
+		//新しい部署IDの入力
+		ConsoleWriter.message(5);
+		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
+		Integer newDeptId = (Integer) deptIdReader.input();
+		
+		
 		//新しい値をDTOに渡す
 		employeeToUpdate.setEmpName(newName);
 		employeeToUpdate.setGender(newGender);
