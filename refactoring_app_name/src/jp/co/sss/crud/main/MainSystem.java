@@ -10,8 +10,7 @@ import jp.co.sss.crud.exception.IllegalInputException;
 import jp.co.sss.crud.exception.SystemErrorException;
 import jp.co.sss.crud.io.ConsoleWriter;
 import jp.co.sss.crud.io.MenuNoReader;
-import jp.co.sss.crud.service.IEmployeeService; 
-
+import jp.co.sss.crud.service.IEmployeeService;
 
 /**
  * 社員情報管理システム開始クラス 社員情報管理システムはこのクラスから始まる。<br/>
@@ -43,30 +42,31 @@ public class MainSystem {
 
 		do {
 			// メニューの表示
+			try{ 
 			ConsoleWriter.startMessage();
 
 			// メニュー番号の入力
 			menuNo = (int) menuNoReader.input();
-
-			// 機能の呼出
-			try {
-				// 実行可能なメニュー番号（1～6）が入力された場合
-				if (menuNo >= MENU_SELECT_ALL && menuNo <= MENU_DELETE) {
-					// ファクトリメソッドで適切なサービスのインスタンスを取得
-					IEmployeeService service = IEmployeeService.getInstanceByMenuNo(menuNo);
-					// サービスの実行
-					service.execute();
+				// 機能の呼出
+				
+					// 実行可能なメニュー番号（1～6）が入力された場合
+					if (menuNo >= MENU_SELECT_ALL && menuNo <= MENU_DELETE) {
+						// ファクトリメソッドで適切なサービスのインスタンスを取得
+						IEmployeeService service = IEmployeeService.getInstanceByMenuNo(menuNo);
+						// サービスの実行
+						service.execute();
+					}
+				
+				} catch (IllegalInputException e) {//不正な入力があった場合、ループに戻る 
+					System.out.println(e.getMessage());
+					System.out.println();
+				
+				} catch (SystemErrorException e) {//継続不能なエラーの場合、ループを抜ける 
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+					break;
 				}
-
-			} catch (IllegalInputException e) {//不正な入力があった場合、ループに戻る 
-				System.out.println(e.getMessage());
-				System.out.println();
-				continue;
-			} catch (SystemErrorException e) {//継続不能なエラーの場合、ループを抜ける 
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-				break;
-			}
+			
 		} while (menuNo != MENU_EXIT);
 		ConsoleWriter.end();
 	}
