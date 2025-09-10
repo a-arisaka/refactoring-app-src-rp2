@@ -25,18 +25,23 @@ public interface IEmployeeService {
 			newInstance = new EmployeeAllFindService();
 			break;
 		case MENU_SEARCH_EMP_NAME:
+		//menu2 社員名検索
 			newInstance = new EmployeeFindByEmpNameService();
 			break;
 		case MENU_SEARCH_DEPT_ID:
+		//menu3 部署ID検索
 			newInstance = new EmployeeFindByDeptIdService();
 			break;
 		case MENU_INSERT:
+		//menu4 新規登録
 			newInstance = new EmployeeRegisterService();
 			break;
 		case MENU_UPDATE:
+		//menu5 更新
 			newInstance = new EmployeeUpdateService();
 			break;
 		case MENU_DELETE:
+		//menu6 削除
 			newInstance = new EmployeeDeleteService();
 			break;
 

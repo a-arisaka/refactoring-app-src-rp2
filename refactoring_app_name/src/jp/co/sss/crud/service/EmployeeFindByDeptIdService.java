@@ -22,11 +22,14 @@ public class EmployeeFindByDeptIdService implements IEmployeeService {
 		Integer deptId = (Integer) deptIdReader.input();
 		department.setDeptId(deptId);
 		EmployeeDAO employeeDAO = new EmployeeDAO();
+		//DAOクラスのfindByDeptId(deptId)メソッドを呼び出す
 		List<Employee> employeeList = employeeDAO.findByDeptId(deptId);
+		//検索結果がないとき、「該当者はいませんでした」というメッセージを表示
 		if (employeeList.isEmpty()) {
 			ConsoleWriter.printUnknown();
 		} else {
 			ConsoleWriter.show();
+			//employeeのtoStringメソッドが呼び出される
 			for (Employee employee : employeeList) {
 				System.out.println(employee);
 			}
