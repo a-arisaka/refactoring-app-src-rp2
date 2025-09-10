@@ -57,36 +57,46 @@ public class MainSystem {
 			menuNo = (int) menuNoReader.input();
 
 			// 機能の呼出
-			switch (menuNo) {
-			case 1:
-				//全件検索機能の呼出
-				employeeAllFindService.execute();
-				break;
+			try {
+				switch (menuNo) {
+				case 1:
+					//全件検索機能の呼出
+					employeeAllFindService.execute();
+					break;
 
-			case 2:
-				// 社員名検索機能の呼出
-				employeeFindByEmpNameService.execute();
-				break;
+				case 2:
+					// 社員名検索機能の呼出
+					employeeFindByEmpNameService.execute();
+					break;
 
-			case 3:
-				// 部署ID検索機能の呼出
-				employeeFindByDeptIdService.execute();
-				break;
+				case 3:
+					// 部署ID検索機能の呼出
+					employeeFindByDeptIdService.execute();
+					break;
 
-			case 4:
-				employeeRegisterService.execute();
-				break;
+				case 4:
+					employeeRegisterService.execute();
+					break;
 
-			case 5:
-				// 更新機能の呼出
-				employeeUpdateService.execute();
-				break;
+				case 5:
+					// 更新機能の呼出
+					employeeUpdateService.execute();
+					break;
 
-			case 6:
-				// 削除機能の呼出
-				employeeDeleteService.execute();
-				break;
+				case 6:
+					// 削除機能の呼出
+					employeeDeleteService.execute();
+					break;
 
+				}
+			} catch (IllegalInputException e) {//不正な入力があった場合、ループに戻る 
+				System.out.println(e.getMessage());
+				System.out.println();
+				continue;
+			} catch (SystemErrorException e) {//継続不能なエラーの場合、ループを抜ける 
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+				break;
 			}
 		} while (menuNo != 7);
 		ConsoleWriter.end();
