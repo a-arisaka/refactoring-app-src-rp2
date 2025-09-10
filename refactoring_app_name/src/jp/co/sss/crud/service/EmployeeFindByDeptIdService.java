@@ -17,7 +17,7 @@ public class EmployeeFindByDeptIdService implements IEmployeeService {
 
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
-		ConsoleWriter.message(7);
+		ConsoleWriter.selectDeptId();
 		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
 		Integer deptId = (Integer) deptIdReader.input();
 		department.setDeptId(deptId);

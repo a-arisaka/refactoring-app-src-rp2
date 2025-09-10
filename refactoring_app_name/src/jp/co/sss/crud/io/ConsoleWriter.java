@@ -5,7 +5,7 @@ import jp.co.sss.crud.util.ConstantMsg;
 public class ConsoleWriter {
 
 	public static void printUnknown() {
-	//「該当者はいませんでした」
+		//「該当者はいませんでした」
 		System.out.println(ConstantMsg.MSG_UNKNOWN);
 	}
 
@@ -44,40 +44,41 @@ public class ConsoleWriter {
 		System.out.println(ConstantMsg.SYSTEM_END);
 	}
 
-	public static void message(int messageNo) {
-		switch (messageNo) {
-		case 1:
-			//社員名
-			System.out.println(ConstantMsg.EMP_NAME);
-			break;
-		case 2:
-			//社員ID
-			System.out.println(ConstantMsg.EMP_ID);
-			break;
-		case 3:
-			//性別
-			System.out.println(ConstantMsg.GENDER);
-			break;
-		case 4:
-			//生年月日
-			System.out.println(ConstantMsg.BIRTHDAY);
-			break;
-		case 5:
-			//部署ID
-			System.out.println(ConstantMsg.DEPT_ID);
-			break;
-		case 6:
-			//更新したい社員の社員ID
-			System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);
-			break;
-		case 7:
-			//選択したい部署ID
-			System.out.println(ConstantMsg.MSG_DEPT_ID);
-			break;
-		case 8:
-			//削除したい社員の社員ID
-			System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
-			break;
-		}
+	//社員名
+	public static void empName() {
+		System.out.println(ConstantMsg.EMP_NAME);
 	}
+
+	//社員ID
+	public static void empId() {
+		System.out.println(ConstantMsg.EMP_ID);
+	}
+
+	//性別
+	public static void gender() {
+		System.out.println(ConstantMsg.GENDER);
+	}
+
+	//生年月日
+	public static void birthday() {
+		System.out.println(ConstantMsg.BIRTHDAY);
+	}
+	//部署ID
+	public static void deptId() {
+		System.out.println(ConstantMsg.DEPT_ID);
+	}
+	
+	//更新したい社員の社員ID
+	public static void updateEmpId() {
+		System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);
+	}
+	//削除したい社員の社員ID
+	public static void deleteEmpId() {
+		System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
+	}
+	//選択したい部署ID
+	public static void selectDeptId() {
+		System.out.println(ConstantMsg.MSG_DEPT_ID);
+	}
+
 }

@@ -6,13 +6,6 @@ public class ConstantMsg {
 	private ConstantMsg() {
 	}
 
-	public static final int MENU_SELECT_ALL = 1;
-	public static final int MENU_SEARCH_EMP_NAME = 2;
-	public static final int MENU_SEARCH_DEPT_ID = 3;
-	public static final int MENU_INSERT = 4;
-	public static final int MENU_UPDATE = 5;
-	public static final int MENU_DELETE = 6;
-
 	public static final String EMP_NAME = "社員名";
 	public static final String EMP_ID = "社員ID";
 	public static final String GENDER = "性別(0:その他, 1:男性, 2:女性, 9:回答なし):";
@@ -37,16 +30,15 @@ public class ConstantMsg {
 	public static final String UPDATE_COMPLETE = "社員情報を更新しました";
 	public static final String DELETE_COMPLETE = "社員情報を削除しました";
 	public static final String START_MENU = "=== 社員管理システム ===\n"
-										+ "1.全件表示\n"
-										+ "2.社員名検索\n"
-										+ "3.部署ID検索\n"
-										+ "4.新規登録\n"
-										+ "5.更新\n"
-										+ "6.削除\n"
-										+ "7.終了\n"
-										+ "メニュー番号を入力してください：";
+			+ "1.全件表示\n"
+			+ "2.社員名検索\n"
+			+ "3.部署ID検索\n"
+			+ "4.新規登録\n"
+			+ "5.更新\n"
+			+ "6.削除\n"
+			+ "7.終了\n"
+			+ "メニュー番号を入力してください：";
 	public static final String SYSTEM_END = "システムを終了します";
 	public static final String BIRTHDAY_ERROR = "\"日付の形式が正しくありません (例: 2002/09/20)\"";
-	
 
 }

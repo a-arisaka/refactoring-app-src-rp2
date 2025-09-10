@@ -17,7 +17,7 @@ public class EmployeeUpdateService implements IEmployeeService {
 	@Override
 	public void execute() throws SystemErrorException, IllegalInputException {
 		//更新する社員IDを入力
-		ConsoleWriter.message(6);
+		ConsoleWriter.updateEmpId();
 		EmployeeEmpIdReader empIdReader = new EmployeeEmpIdReader();
 		int updateEmpId = (int) empIdReader.input();
 
@@ -29,17 +29,17 @@ public class EmployeeUpdateService implements IEmployeeService {
 			return;
 		}
 		//新しい社員名の入力
-		ConsoleWriter.message(1);
+		ConsoleWriter.empName();
 		EmployeeNameReader nameReader = new EmployeeNameReader();
 		String newName = (String) nameReader.input();
 
 		//新しい性別の入力
-		ConsoleWriter.message(3);
+		ConsoleWriter.gender();
 		EmployeeGenderReader genderReader = new EmployeeGenderReader();
 		Integer newGender = (Integer) genderReader.input();
 
 		//新しい生年月日の入力
-		ConsoleWriter.message(4);
+		ConsoleWriter.birthday();
 		EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
 		String birthday = (String) birthdayReader.input();
 		java.text.SimpleDateFormat sdFormat = new java.text.SimpleDateFormat("yyyy/MM/dd");
@@ -54,7 +54,7 @@ public class EmployeeUpdateService implements IEmployeeService {
 		}
 
 		//新しい部署IDの入力
-		ConsoleWriter.message(5);
+		ConsoleWriter.deptId();
 		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
 		Integer newDeptId = (Integer) deptIdReader.input();
 		

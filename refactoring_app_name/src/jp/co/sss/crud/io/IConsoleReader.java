@@ -25,11 +25,11 @@ public interface IConsoleReader {
 	 * @throws IllegalInputException isValidメソッドの結果がfalseの場合に送出する
 	 */
 	public default Object input() throws SystemErrorException, IllegalInputException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
 		try {
 			//			br.close();//IOExceptionを発生させる場合はコメントを外して実行する
-			input = br.readLine();
+			input = reader.readLine();
 			if (!isValid(input)) {
 				String errorMsg = getErrorMsg();
 				throw new IllegalInputException(errorMsg, null);
