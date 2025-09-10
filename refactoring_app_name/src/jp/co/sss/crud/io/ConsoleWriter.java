@@ -5,7 +5,7 @@ import jp.co.sss.crud.util.ConstantMsg;
 public class ConsoleWriter {
 
 	public static void printUnknown() {
-		//「該当者はいませんでした」
+	//「該当者はいませんでした」
 		System.out.println(ConstantMsg.MSG_UNKNOWN);
 	}
 
