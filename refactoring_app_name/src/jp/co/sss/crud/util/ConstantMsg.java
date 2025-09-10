@@ -46,6 +46,7 @@ public class ConstantMsg {
 										+ "7.終了\n"
 										+ "メニュー番号を入力してください：";
 	public static final String SYSTEM_END = "システムを終了します";
+	public static final String BIRTHDAY_ERROR = "\"日付の形式が正しくありません (例: 2002/09/20)\"";
 	
 
 }
