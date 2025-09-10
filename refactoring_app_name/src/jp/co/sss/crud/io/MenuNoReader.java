@@ -1,10 +1,12 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.util.ConstantMsg;
+
 public class MenuNoReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "メニュー番号を半角数字で入力してください";
+		return ConstantMsg.HALF_WIDTH_ERROR;
 	}
 
 	@Override

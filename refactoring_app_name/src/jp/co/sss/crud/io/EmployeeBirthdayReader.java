@@ -1,10 +1,12 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.util.ConstantMsg;
+
 public class EmployeeBirthdayReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "生年月日を入力してください";
+		return ConstantMsg.BIRTHDAY_ERROR;
 	}
 
 	@Override

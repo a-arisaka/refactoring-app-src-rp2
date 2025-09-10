@@ -1,10 +1,12 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.util.ConstantMsg;
+
 public class EmployeeGenderReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "性別を半角数字で選択してください";
+		return ConstantMsg.HALF_WIDTH_ERROR;
 	}
 
 	@Override

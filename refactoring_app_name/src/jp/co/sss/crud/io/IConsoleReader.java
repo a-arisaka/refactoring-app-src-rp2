@@ -27,8 +27,9 @@ public interface IConsoleReader {
 	public default Object input() throws SystemErrorException, IllegalInputException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String input = null;
+		
 		try {
-			//			br.close();//IOExceptionを発生させる場合はコメントを外して実行する
+			//br.close();//IOExceptionを発生させる場合はコメントを外して実行する
 			input = reader.readLine();
 			if (!isValid(input)) {
 				String errorMsg = getErrorMsg();

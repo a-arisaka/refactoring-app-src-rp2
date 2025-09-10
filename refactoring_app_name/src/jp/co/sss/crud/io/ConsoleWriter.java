@@ -63,19 +63,22 @@ public class ConsoleWriter {
 	public static void birthday() {
 		System.out.println(ConstantMsg.BIRTHDAY);
 	}
+
 	//部署ID
 	public static void deptId() {
 		System.out.println(ConstantMsg.DEPT_ID);
 	}
-	
+
 	//更新したい社員の社員ID
 	public static void updateEmpId() {
 		System.out.println(ConstantMsg.MSG_UPDATE_EMP_ID);
 	}
+
 	//削除したい社員の社員ID
 	public static void deleteEmpId() {
 		System.out.println(ConstantMsg.MSG_DELETE_EMP_ID);
 	}
+
 	//選択したい部署ID
 	public static void selectDeptId() {
 		System.out.println(ConstantMsg.MSG_DEPT_ID);

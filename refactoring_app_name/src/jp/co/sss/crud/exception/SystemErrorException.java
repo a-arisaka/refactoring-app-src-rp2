@@ -1,6 +1,6 @@
 package jp.co.sss.crud.exception;
 
-public class SystemErrorException extends RuntimeException {
+public class SystemErrorException extends Exception {
 	//例外が起きたときの処理を記入
 	/**
 	* コンストラクタ

@@ -1,10 +1,12 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.util.ConstantMsg;
+
 public class EmployeeNameReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "エラー：社員名を入力してください";
+		return ConstantMsg.NAME_ERROR;
 	}
 
 	@Override
@@ -13,7 +15,7 @@ public class EmployeeNameReader implements IConsoleReader {
 		if (inputString == null || inputString.isEmpty()) {
 			return false;
 		}
-		// 
+		// 正規表現を使いひらがな、カタカナ、スペースで構成されているかチェック
 		return inputString.matches("^[\\p{L} \\u3040-\\u309F\\u30A0-\\u30FF]+$");
 
 	}

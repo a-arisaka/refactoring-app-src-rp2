@@ -13,6 +13,7 @@ import java.util.List;
 import jp.co.sss.crud.dto.Department;
 import jp.co.sss.crud.dto.Employee;
 import jp.co.sss.crud.exception.SystemErrorException;
+import jp.co.sss.crud.util.ConstantMsg;
 import jp.co.sss.crud.util.ConstantSQL;
 
 public class EmployeeDAO implements IEmployeeDAO {
@@ -65,7 +66,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -137,7 +138,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -208,7 +209,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -260,7 +261,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			preparedStatement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -317,7 +318,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			preparedStatement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -357,7 +358,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			preparedStatement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			// チェック例外であるSystemErrorExceptionをスロー
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {
@@ -412,7 +413,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 						birthday = sdf.parse(birthdayStr);
 					} catch (ParseException e) {
 						// エラーを無視せず、システム例外として通知する
-						throw new SystemErrorException("日付フォーマットが不正です: " + birthdayStr, e);
+						throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR + birthdayStr, e);
 					}
 				}
 				Department department = new Department();
@@ -422,10 +423,8 @@ public class EmployeeDAO implements IEmployeeDAO {
 				employee = new Employee(empSearchId, empName, gender, birthday, department);
 			}
 
-		} catch (SQLException |
-
-				ClassNotFoundException e) {
-			throw new SystemErrorException("システムエラー: データベース処理中に問題が発生しました。", e);
+		} catch (SQLException | ClassNotFoundException e) {
+			throw new SystemErrorException(ConstantMsg.MSG_SYSTEM_ERROR, e);
 		} finally {
 			// リソースの解放処理
 			try {

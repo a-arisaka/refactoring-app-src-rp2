@@ -1,10 +1,12 @@
 package jp.co.sss.crud.io;
 
+import jp.co.sss.crud.util.ConstantMsg;
+
 public class EmployeeDeptIdReader implements IConsoleReader {
 
 	@Override
 	public String getErrorMsg() {
-		return "部署IDを半角数字で入力してください";
+		return ConstantMsg.HALF_WIDTH_ERROR;
 	}
 
 	@Override
