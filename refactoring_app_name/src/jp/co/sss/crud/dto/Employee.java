@@ -1,5 +1,6 @@
 package jp.co.sss.crud.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import jp.co.sss.crud.util.ConstantMsg;
@@ -79,8 +80,8 @@ public class Employee {
         this.birthday = birthday;
     }
 
-    public Department getDepartment() {
-        return department;
+	public Department getDepartment() {
+		return department;
     }
 
     public void setDepartment(Department department) {
@@ -96,8 +97,14 @@ public class Employee {
       } else if (this.gender == 2) { 
        gender = ConstantMsg.GENDER_FEMALE ; 
       } 
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+      String formattedBirthday = "";
+      if (this.birthday != null) {
+          // formatメソッドで Date -> String に変換
+          formattedBirthday = sdf.format(this.birthday);
+      }
      
-      return empId + "\t" + empName + "\t" + gender + "\t" + birthday 
+      return empId + "\t" + empName + "\t" + gender + "\t" + formattedBirthday
         + "\t" + department.getDeptName(); 
    } 
 }

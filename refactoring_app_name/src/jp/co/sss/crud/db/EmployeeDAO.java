@@ -175,10 +175,10 @@ public class EmployeeDAO implements IEmployeeDAO {
 				int empId = resultSet.getInt("emp_id");
 				String empName = resultSet.getString("emp_name");
 				int gender = resultSet.getInt("gender");
-				// 1. まずは文字列として日付を取得
+				// 文字列として日付を取得
 				String birthdayStr = resultSet.getString("birthday");
 
-				// 2. 定義したフォーマットで文字列をDateオブジェクトに変換
+				// 定義したフォーマットで文字列をDateオブジェクトに変換
 				Date birthday = null;
 				if (birthdayStr != null && !birthdayStr.isEmpty()) {
 					try {

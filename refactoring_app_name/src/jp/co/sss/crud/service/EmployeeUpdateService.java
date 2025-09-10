@@ -41,13 +41,23 @@ public class EmployeeUpdateService implements IEmployeeService {
 		//新しい生年月日の入力
 		ConsoleWriter.message(4);
 		EmployeeBirthdayReader birthdayReader = new EmployeeBirthdayReader();
-		java.util.Date newBirthday = (java.util.Date) birthdayReader.input();
+		String birthday = (String) birthdayReader.input();
+		
 
 		//新しい部署IDの入力
 		ConsoleWriter.message(5);
 		EmployeeDeptIdReader deptIdReader = new EmployeeDeptIdReader();
 		Integer newDeptId = (Integer) deptIdReader.input();
-		
+		java.text.SimpleDateFormat sdFormat = new java.text.SimpleDateFormat("yyyy/MM/dd");
+		java.util.Date newBirthday = null;
+		try {
+		    // parseメソッドで文字列を日付に変換
+		    newBirthday = sdFormat.parse(birthday);
+		} catch (java.text.ParseException e) {
+		    // 日付の形式が正しくない場合のエラー処理
+			ConsoleWriter.birthdayError();
+		    return; 
+		}
 		//新しい値をDTOに渡す
 		employeeToUpdate.setEmpName(newName);
 		employeeToUpdate.setGender(newGender);
