@@ -103,7 +103,7 @@ public class Employee {
           // formatメソッドで Date -> String に変換
           formattedBirthday = sdf.format(this.birthday);
       }
-     
+  
       return empId + "\t" + empName + "\t" + gender + "\t" + formattedBirthday
         + "\t" + department.getDeptName(); 
    } 

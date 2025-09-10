@@ -17,7 +17,7 @@ public class ConstantMsg {
 			+ "メニュー番号を入力してください：";
 	
 	public static final String SYSTEM_END = "システムを終了します";
-	public static final String MSG_RECORD = "社員ID\\t社員名\\t性別\\t生年月日\\t部署名";
+	public static final String MSG_RECORD = "ID\t社員名\t性別\t生年月日\t部署名";
 	public static final String EMP_NAME = "社員名:";
 	public static final String EMP_ID = "社員ID:";
 	public static final String GENDER = "性別(0:その他, 1:男性, 2:女性, 9:回答なし):";
